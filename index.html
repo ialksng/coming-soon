@@ -23,7 +23,6 @@
         }
 
         :root{
-            var(--bg): #030712; 
             --bg: #030712; 
             --text: #ffffff;
             --muted: #94a3b8; 
@@ -41,22 +40,22 @@
             background:var(--bg);
             color:var(--text);
             min-height: 100vh;
-            min-height: 100dvh; /* Adjusts perfectly to mobile browser UI */
+            min-height: 100dvh; /* Adjusts dynamically to shifting mobile browser headers/footers */
             display:flex;
             justify-content:center;
             align-items:center;
-            /* Allow vertical scroll if screen is too small, hide horizontal scroll */
+            /* Prevents horizontal overflow breaking layouts while remaining vertically scrollable if cut off */
             overflow-x: hidden;
             overflow-y: auto; 
             position:relative;
-            padding: 20px 0; /* Add slight breathing room on top/bottom */
+            padding: 40px 0; /* Clear padding ensuring buttons or footer never touch real screen boundaries */
         }
 
-        /* Animated Background */
+        /* Animated Background Elements fixed to viewport to avoid dynamic layout shifts */
 
         body::before{
             content:"";
-            position:fixed; /* Changed to fixed so it stays in place while scrolling */
+            position:fixed; 
             width:900px;
             height:900px;
             background:radial-gradient(circle,rgba(var(--accent-rgb),.18),transparent 70%);
@@ -71,7 +70,7 @@
 
         body::after{
             content:"";
-            position:fixed; /* Changed to fixed to cover the entire background even when scrolling */
+            position:fixed; 
             inset:0;
             background-image:
                 linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
@@ -214,26 +213,13 @@
             box-shadow:0 16px 45px rgba(var(--accent-rgb),.45);
         }
 
-        .btn.secondary {
-            background: transparent;
-            border-color: rgba(var(--accent-rgb), .5);
-            box-shadow: none;
-            color: #e2e8f0;
-        }
-
-        .btn.secondary:hover {
-            background: rgba(var(--accent-rgb), .1);
-            border-color: var(--accent);
-            color: #ffffff;
-        }
-
         footer{
             margin-top:55px;
             color:#64748b;
             font-size:.92rem;
         }
 
-        /* Mobile Responsiveness Tightened */
+        /* Mobile Responsiveness Rules Optimized */
         
         @media(max-width:600px){
             .container{
