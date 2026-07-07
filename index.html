@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+    <title>ialksng — Under Development</title>
+    <meta name="description" content="ialksng is currently under development. Stay connected through Linktree while we build something exceptional.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        :root{
+            var(--bg): #030712; 
+            --bg: #030712; 
+            --text: #ffffff;
+            --muted: #94a3b8; 
+            --accent: #3b82f6; 
+            --accent-hover: #2563eb;
+            --accent-rgb: 59, 130, 246; 
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            background:var(--bg);
+            color:var(--text);
+            min-height: 100vh;
+            min-height: 100dvh; /* Adjusts perfectly to mobile browser UI */
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            /* Allow vertical scroll if screen is too small, hide horizontal scroll */
+            overflow-x: hidden;
+            overflow-y: auto; 
+            position:relative;
+            padding: 20px 0; /* Add slight breathing room on top/bottom */
+        }
+
+        /* Animated Background */
+
+        body::before{
+            content:"";
+            position:fixed; /* Changed to fixed so it stays in place while scrolling */
+            width:900px;
+            height:900px;
+            background:radial-gradient(circle,rgba(var(--accent-rgb),.18),transparent 70%);
+            filter:blur(60px);
+            animation:float 14s ease-in-out infinite;
+            z-index: 0;
+            top: 50%;
+            left: 50%;
+            margin-top: -450px;
+            margin-left: -450px;
+        }
+
+        body::after{
+            content:"";
+            position:fixed; /* Changed to fixed to cover the entire background even when scrolling */
+            inset:0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+            background-size:50px 50px;
+            mask-image:radial-gradient(circle at center,black,transparent 85%);
+            -webkit-mask-image:radial-gradient(circle at center,black,transparent 85%);
+            pointer-events:none;
+            z-index: 1;
+        }
+
+        @keyframes float{
+            0%,100%{
+                transform:translate(-100px,-60px);
+            }
+            50%{
+                transform:translate(100px,60px);
+            }
+        }
+
+        .container{
+            position:relative;
+            z-index:2;
+            max-width:760px;
+            text-align:center;
+            padding:40px;
+            width: 100%;
+        }
+
+        /* Logo */
+
+        .logo{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin-bottom:28px;
+        }
+
+        .logo img{
+            width:195px;
+            height:auto;
+            display:block;
+            filter:drop-shadow(0 0 20px rgba(var(--accent-rgb),.35));
+            transition:.35s ease;
+        }
+
+        .logo img:hover{
+            transform:scale(1.06);
+            filter:drop-shadow(0 0 30px rgba(var(--accent-rgb),.55));
+        }
+
+        /* Badge */
+
+        .badge{
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            padding:10px 18px;
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:999px;
+            background:rgba(255,255,255,.03);
+            color:#e2e8f0;
+            margin-bottom:35px;
+            font-size:.9rem;
+        }
+
+        .dot{
+            width:8px;
+            height:8px;
+            border-radius:50%;
+            background:var(--accent);
+            animation:pulse 1.5s infinite;
+        }
+
+        @keyframes pulse{
+            0%{
+                opacity:.4;
+                transform:scale(.9);
+            }
+            50%{
+                opacity:1;
+                transform:scale(1.3);
+            }
+            100%{
+                opacity:.4;
+                transform:scale(.9);
+            }
+        }
+
+        h1{
+            font-size:clamp(2.5rem,8vw,5.4rem);
+            line-height:1.1;
+            margin-bottom:25px;
+            font-weight:800;
+        }
+
+        .highlight{
+            color:var(--accent);
+        }
+
+        p{
+            color:var(--muted);
+            font-size:1.12rem;
+            line-height:1.7;
+            margin-bottom:45px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Button Group & Styles */
+        
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            padding:16px 34px;
+            background:var(--accent);
+            color:#fff;
+            text-decoration:none;
+            border-radius:999px;
+            font-weight:600;
+            transition:.3s;
+            box-shadow:0 10px 35px rgba(var(--accent-rgb),.28);
+            border: 2px solid transparent;
+            min-width: 200px;
+        }
+
+        .btn:hover{
+            transform:translateY(-4px);
+            background:var(--accent-hover);
+            box-shadow:0 16px 45px rgba(var(--accent-rgb),.45);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border-color: rgba(var(--accent-rgb), .5);
+            box-shadow: none;
+            color: #e2e8f0;
+        }
+
+        .btn.secondary:hover {
+            background: rgba(var(--accent-rgb), .1);
+            border-color: var(--accent);
+            color: #ffffff;
+        }
+
+        footer{
+            margin-top:55px;
+            color:#64748b;
+            font-size:.92rem;
+        }
+
+        /* Mobile Responsiveness Tightened */
+        
+        @media(max-width:600px){
+            .container{
+                padding:20px;
+            }
+
+            .logo{
+                margin-bottom:20px;
+            }
+
+            .logo img{
+                width:120px;
+            }
+
+            .badge{
+                margin-bottom: 24px;
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+
+            h1{
+                font-size:2.2rem;
+                margin-bottom: 16px;
+            }
+
+            p{
+                font-size:0.95rem;
+                margin-bottom:32px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+
+            .btn{
+                width:100%;
+                min-width: unset;
+                padding: 14px 24px;
+            }
+
+            footer{
+                margin-top: 40px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <img src="logo.png" alt="ialksng Logo">
+        </div>
+
+        <!-- Badge -->
+        <div class="badge">
+            <span class="dot"></span>
+            Currently Under Development
+        </div>
+
+        <!-- Heading -->
+        <h1>
+            Building the <span class="highlight">Next Chapter.</span>
+        </h1>
+
+        <!-- Description -->
+        <p>
+            I'm crafting a new experience for <strong>ialksng.me</strong>.<br>
+            The platform is currently under active development and will be launching soon.
+            <br><br>
+            In the meantime, you can explore my work, projects, and socials below.
+        </p>
+
+        <!-- Button Group -->
+        <div class="btn-group">
+            <a class="btn" href="https://linktr.ee/ialksng" target="_blank" rel="noopener">
+                Visit Linktree →
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            © 2026 ialksng. All rights reserved.
+        </footer>
+
+    </div>
+
+</body>
+</html>
